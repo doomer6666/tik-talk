@@ -1,12 +1,22 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { ProfileCard } from './common-ui/profile-card/profile-card';
+import { Profile } from './data/services/profile';
+import { IProfile } from './data/services/interfaces/profile.interface';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ProfileCard],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('tik-talk');
+  profileService = inject(Profile);
+  profiles = signal<IProfile[]>([]);
+  ngOnInit(): void {
+    this.profileService.getTestAccounts().subscribe((data) => {
+      console.log('data', data);
+      this.profiles.set(data);
+    });
+  }
 }

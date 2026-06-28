@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --dark-color: #000000;
+  --light-color: #ffffff;
+  --primary-color: #ae7aff;
+}
+
+html,
+body,
+app-root {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  font-family: "JetBrains Mono", monospace !important;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-card__wrapper {
+  display: grid;
+  grid-gap: 8px;
+}

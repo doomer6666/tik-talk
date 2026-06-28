@@ -1,0 +1,39 @@
+@if(profile){
+  <div class="profile-card">
+    <div class="profile-card__user">
+      <img [src]="profile.avatarUrl | imgUrl" alt="User Avatar" class="profile-card__avatar" />
+      <div class="profile-card__info">
+        <h2 class="profile-card__name">{{profile.firstName}}</h2>
+        <p class="profile-card__username">{{profile.username}}</p>
+      </div>
+      </div>
+
+      <p class="profile-card__description">
+        {{profile.description}}
+      </p>
+
+      <div class="profile-card__tags">
+        @for(tag of profile.stack; track tag){
+          <span class="profile-card__tag">{{tag}}</span>
+        }
+      </div>
+
+      <div class="profile-card__actions">
+        <!-- <button class="profile-card__button profile-card__button--rectangle">
+          Подписаться
+          <img src="/assets/invite.svg" alt="Invite" />
+        </button> -->
+        <button class="profile-card__button profile-card__button--dark">
+          <img src="/assets/friend.svg" alt="Friend" />
+        </button>
+        <button class="profile-card__button profile-card__button--rectangle ">
+          Написать
+          <img src="/assets/message.svg" alt="Message" />
+        </button>
+        <button class="profile-card__button">
+          <img src="/assets/follow.svg" alt="Follow" />
+        </button>
+      </div>
+  </div>
+}
+
