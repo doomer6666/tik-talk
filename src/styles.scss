@@ -27,3 +27,8 @@ app-root {
   display: grid;
   grid-gap: 8px;
 }
+
+button,
+input {
+  all: unset;
+}

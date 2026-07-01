@@ -1,0 +1,60 @@
+.login__page {
+  height: 100vh;
+  background-image: url("http://localhost:4200/assets/bg-1920.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .login {
+    display: flex;
+    gap: 25%;
+
+    .login__form {
+      width: 440px;
+      h1 {
+        font-size: 48px;
+        font-weight: 800;
+        margin-bottom: 60px;
+      }
+      .form__field {
+        margin-bottom: 24px;
+        label {
+          font-size: 12px;
+          font-weight: 700;
+          margin-bottom: 8px;
+        }
+        .form__field__input {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 12px 20px;
+          border-radius: 2px;
+          border: solid 1px var(--light-color);
+          background-color: var(--dark-color);
+          input {
+            margin-right: 12px;
+            font-size: 14px;
+          }
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+      .login__form__submit {
+        box-sizing: border-box;
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+        border-radius: 2px;
+        background-color: var(--primary-color);
+        color: var(--dark-color);
+        cursor: pointer;
+      }
+    }
+  }
+}
