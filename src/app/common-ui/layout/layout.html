@@ -1,0 +1,43 @@
+<div class="main-layout">
+  <aside class="sidebar">
+    <img src="assets/logo.svg" alt="Logo" class="sidebar__logo" />
+    <nav class="sidebar__nav">
+      <a routerLink="/profile" routerLinkActive="active" class="sidebar__nav__link">
+        <img src="assets/home.svg" alt="Profile icon" class="sidebar__nav__icon" />
+        Моя страница
+      </a>
+      <a routerLink="/chats" routerLinkActive="active" class="sidebar__nav__link">
+        <img src="assets/chat.svg" alt="Chats icon" class="sidebar__nav__icon" />
+        Чаты
+        @if(unreadMessagesCount> 0) {
+          <span class="sidebar__nav__badge">{{ unreadMessagesCount }}</span>
+        }
+      </a>
+      <a routerLink="/search" routerLinkActive="active" class="sidebar__nav__link">
+        <img src="assets/search.svg" alt="Search icon" class="sidebar__nav__icon" />
+        Поиск
+      </a>
+    </nav>
+
+    <div class="sidebar__folowers">
+      <p class="sidebar__folowers__title">Подписчики</p>
+      <ul class="sidebar__folowers__list">
+        @for(follower of followers; track follower) {
+        <li class="sidebar__folowers__list__item">
+          <img src="assets/avatar.png" alt="Follower 1" class="sidebar__folowers__avatar" />
+          <span class="sidebar__folowers__name">{{follower}}</span>
+        </li>
+      }
+      </ul>
+      <a routerLink="/followers" class="sidebar__folowers__all">Все подписчики  ></a>
+    </div>
+    <footer class="sidebar__footer">
+      <img src="assets/avatar.png" alt="User avatar" class="sidebar__footer__avatar" />
+      <p>ryan.gosling</p>
+      <img src="assets/settings.svg" alt="Settings icon" class="sidebar__footer__icon" />
+    </footer>
+  </aside>
+  <div class="children-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

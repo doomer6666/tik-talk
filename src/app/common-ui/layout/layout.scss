@@ -1,0 +1,100 @@
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  width: 100%;
+  height: 100vh;
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: start;
+    margin: 20px 0;
+    .sidebar__logo {
+      width: 61px;
+      height: 74px;
+      margin-left: 28px;
+    }
+    nav {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 0 12px;
+      a {
+        display: flex;
+        margin: 8px 12px;
+        gap: 12px;
+        font-size: 14px;
+        font-weight: 700;
+        img {
+          width: 16px;
+          height: 16px;
+        }
+        .sidebar__nav__badge {
+          margin-left: auto;
+          background-color: var(--primary-color);
+          color: var(--dark-color);
+          padding: 1px 5px;
+        }
+      }
+    }
+
+    .sidebar__folowers {
+      margin: 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .sidebar__folowers__title {
+        font-weight: 500;
+      }
+      .sidebar__folowers__list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        .sidebar__folowers__list__item {
+          padding: 6px 0;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-size: 14px;
+          img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+          }
+        }
+      }
+      a.sidebar__folowers__all {
+        font-weight: 500;
+        color: var(--primary-color);
+      }
+    }
+
+    .sidebar__footer {
+      margin: auto 12px 0 12px;
+      padding: 4px 16px;
+      font-size: 14px;
+      color: var(--primary-color);
+      background-color: var(--dark-active-color);
+      display: flex;
+      align-items: center;
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 12px;
+        &.sidebar__footer__icon {
+          width: 14px;
+          height: 14px;
+          margin-right: 0;
+          margin-left: auto;
+        }
+      }
+    }
+  }
+  .children-content {
+    background-image: url("http://localhost:4200/assets/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
