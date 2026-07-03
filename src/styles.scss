@@ -2,6 +2,8 @@
   --dark-color: #000000;
   --dark-active-color: #161616;
   --light-color: #ffffff;
+  --secondary-light-color: #ffffffbf;
+  --shadow-color: #ffffff40;
   --primary-color: #ae7aff;
 }
 
@@ -24,16 +26,29 @@ app-root {
   padding: 0;
 }
 
-.profile-card__wrapper {
-  display: grid;
-  grid-gap: 8px;
-}
-
 button,
-input {
+input,
+dataset,
+select,
+textarea {
   all: unset;
 }
 
 ul {
   list-style: none;
+}
+
+a,
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+input[list]::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+input[list] {
+  -moz-appearance: none;
+  appearance: none;
 }

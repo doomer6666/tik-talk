@@ -21,11 +21,20 @@
       gap: 8px;
       margin: 0 12px;
       a {
+        border-radius: 2px;
         display: flex;
-        margin: 8px 12px;
+        padding: 8px 12px;
         gap: 12px;
         font-size: 14px;
         font-weight: 700;
+
+        &:hover {
+          background-color: var(--dark-active-color);
+        }
+        &.active {
+          color: var(--primary-color);
+          background-color: var(--dark-active-color);
+        }
         img {
           width: 16px;
           height: 16px;
@@ -43,7 +52,7 @@
       margin: 0 12px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
       .sidebar__folowers__title {
         font-weight: 500;
       }
@@ -52,11 +61,18 @@
         flex-direction: column;
         gap: 6px;
         .sidebar__folowers__list__item {
+          cursor: pointer;
           padding: 6px 0;
           display: flex;
           align-items: center;
           gap: 12px;
           font-size: 14px;
+          &:hover {
+            background-color: var(--dark-active-color);
+          }
+          &:active {
+            color: var(--primary-color);
+          }
           img {
             width: 32px;
             height: 32px;
@@ -67,17 +83,30 @@
       a.sidebar__folowers__all {
         font-weight: 500;
         color: var(--primary-color);
+        width: fit-content;
+        padding: 4px 8px;
+        &:hover {
+          background-color: var(--dark-active-color);
+        }
+        &:active {
+          color: var(--light-color);
+        }
       }
     }
 
     .sidebar__footer {
+      cursor: pointer;
+      border-radius: 2px;
       margin: auto 12px 0 12px;
       padding: 4px 16px;
       font-size: 14px;
-      color: var(--primary-color);
-      background-color: var(--dark-active-color);
       display: flex;
       align-items: center;
+
+      &:hover {
+        color: var(--primary-color);
+        background-color: var(--dark-active-color);
+      }
       img {
         width: 32px;
         height: 32px;

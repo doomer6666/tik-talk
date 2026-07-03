@@ -1,0 +1,44 @@
+.profile-search {
+  background-color: var(--dark-color);
+  padding: 16px 20px;
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 0.2fr;
+  font-weight: 500;
+  color: var(--secondary-light-color);
+  border: var(--light-color) solid 1px;
+  box-shadow: 4px 4px 0 0 var(--shadow-color);
+  .profile-search__input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .profile-search__input-wrapper {
+      padding: 12px 0;
+      font-size: 14px;
+      border-bottom: 1px solid var(--light-color);
+      display: flex;
+      justify-content: space-between;
+      input {
+        margin-right: auto;
+      }
+      img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .profile-search__filter-button {
+    margin-bottom: auto;
+    img {
+      padding: 14px;
+      border: var(--light-color) solid 1px;
+      border-radius: 2px;
+    }
+    &--active img {
+      background-color: var(--primary-color);
+      border: none;
+    }
+  }
+}

@@ -1,11 +1,13 @@
 .profile-card {
   border: 1px solid var(--light-color);
+  background-color: var(--dark-color);
+  margin: 0 auto;
   padding: 32px 24px;
   display: flex;
   gap: 32px;
   max-height: 144px;
-  width: fit-content;
   align-items: center;
+  max-width: 1200px;
 
   .profile-card__user {
     margin: 12.5px 0;

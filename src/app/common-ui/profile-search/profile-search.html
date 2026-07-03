@@ -1,0 +1,74 @@
+<div class="profile-search">
+  @if(isOpenFilter){
+  <div class="profile-search__input profile-search__input--name">
+    <label for="profile-search-name">Имя пользователя</label>
+    <div class="profile-search__input-wrapper">
+      <input id="profile-search-name" list="profile-search-name-list" type="text" placeholder="Выберете" />
+      <datalist id="profile-search-name-list" class="profile-search__datalist">
+        <option value="Иван Иванов"></option>
+        <option value="Петр Петров"></option>
+        <option value="Сергей Сергеев"></option>
+      </datalist>
+      <button class="profile-search__input-find" type="button">
+        <img class="profile-search__input-icon" src="assets/search.svg" alt="search" />
+      </button>
+    </div>
+  </div>
+
+  <div class="profile-search__input profile-search__input--registration-date">
+    <label for="profile-search-registration-date">Дата регистрации</label>
+    <div class="profile-search__input-wrapper">
+
+      <input id="profile-search-registration-date" type="date" placeholder="Выберете" />
+      <button class="profile-search__input-find" type="button">
+        <img class="profile-search__input-icon" src="assets/search.svg" alt="search" />
+      </button>
+    </div>
+  </div>
+
+  <div class="profile-search__input profile-search__input--city">
+    <label for="profile-search-city">Город</label>
+    <div class="profile-search__input-wrapper">
+
+      <input id="profile-search-city" list="profile-search-city-list" type="text" placeholder="Выберете" />
+      <datalist id="profile-search-city-list" class="profile-search__datalist">
+        <option value="Москва"></option>
+        <option value="Санкт-Петербург"></option>
+        <option value="Новосибирск"></option>
+      </datalist>
+      <button class="profile-search__input-find" type="button">
+        <img class="profile-search__input-icon" src="assets/search.svg" alt="search" />
+      </button>
+    </div>
+  </div>
+
+  <div class="profile-search__input profile-search__input--skills">
+    <label for="profile-search-skills">Навыки</label>
+    <div class="profile-search__input-wrapper">
+
+      <input id="profile-search-skills" list="profile-search-skills-list" type="text" placeholder="Выберете" />
+      <datalist id="profile-search-skills-list" class="profile-search__datalist">
+        <option value="Python"></option>
+        <option value="JavaScript"></option>
+      </datalist>
+      <button class="profile-search__input-find" type="button">
+        <img class="profile-search__input-icon" src="assets/search.svg" alt="search" />
+      </button>
+    </div>
+  </div>
+  }
+  @else{
+  <div class="profile-search__input">
+    <!--WIP-->
+    <input type="text" />
+    <button class="profile-search__input-find" type="button">
+      <img class="profile-search__input-icon" src="assets/search.svg" alt="search" />
+    </button>
+  </div>
+  }
+  <button
+    [class]="isOpenFilter ? 'profile-search__filter-button profile-search__filter-button--active' : 'profile-search__filter-button'"
+    type="button" (click)="isOpenFilter = !isOpenFilter">
+    <img src="assets/filter.svg" alt="filter" />
+  </button>
+</div>

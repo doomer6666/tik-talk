@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
 })
-export class LoginPage {}
+export class LoginPage {
+  isPasswordVisible: boolean = false;
+}

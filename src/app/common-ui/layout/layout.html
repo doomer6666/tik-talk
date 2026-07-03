@@ -10,7 +10,7 @@
         <img src="assets/chat.svg" alt="Chats icon" class="sidebar__nav__icon" />
         Чаты
         @if(unreadMessagesCount> 0) {
-          <span class="sidebar__nav__badge">{{ unreadMessagesCount }}</span>
+        <span class="sidebar__nav__badge">{{ unreadMessagesCount }}</span>
         }
       </a>
       <a routerLink="/search" routerLinkActive="active" class="sidebar__nav__link">
@@ -27,9 +27,9 @@
           <img src="assets/avatar.png" alt="Follower 1" class="sidebar__folowers__avatar" />
           <span class="sidebar__folowers__name">{{follower}}</span>
         </li>
-      }
+        }
       </ul>
-      <a routerLink="/followers" class="sidebar__folowers__all">Все подписчики  ></a>
+      <a routerLink="/followers" class="sidebar__folowers__all">Все подписчики ></a>
     </div>
     <footer class="sidebar__footer">
       <img src="assets/avatar.png" alt="User avatar" class="sidebar__footer__avatar" />

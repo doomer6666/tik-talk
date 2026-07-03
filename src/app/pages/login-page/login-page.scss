@@ -43,6 +43,12 @@
             width: 20px;
             height: 20px;
           }
+          .form__field__invisible_icon {
+            cursor: pointer;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
         }
       }
       .login__form__submit {

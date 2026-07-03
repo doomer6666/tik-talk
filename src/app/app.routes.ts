@@ -5,5 +5,9 @@ import { Layout } from './common-ui/layout/layout';
 
 export const routes: Routes = [
   { path: '', component: LoginPage },
-  { path: '', component: Layout, children: [{ path: 'search', component: SearchPage }] },
+  {
+    path: '',
+    component: Layout,
+    children: [{ path: 'search', component: SearchPage }],
+  },
 ];

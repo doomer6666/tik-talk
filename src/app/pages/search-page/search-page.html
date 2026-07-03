@@ -1,8 +1,12 @@
-<div class="profile-card__wrapper">
-  @for(profile of profiles(); track profile.id) {
-  <app-profile-card [profile]="profile"></app-profile-card>
-  }
-  @empty {
-  <div>Loading...</div>
-  }
+<div class="search-page">
+  <app-profile-search></app-profile-search>
+  <div class="search-page__profile-card__wrapper">
+    @for(profile of profiles(); track profile.id) {
+    <app-profile-card [profile]="profile"></app-profile-card>
+    }
+    @empty {
+    <div>Loading...</div>
+    }
+  </div>
 </div>
+

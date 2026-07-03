@@ -1,0 +1,11 @@
+.search-page {
+  margin: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  .search-page__profile-card__wrapper {
+    display: grid;
+    grid-gap: 8px;
+  }
+}
