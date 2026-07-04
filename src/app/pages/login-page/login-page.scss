@@ -61,6 +61,11 @@
         color: var(--dark-color);
         cursor: pointer;
       }
+
+      .login__form__error {
+        background-color: var(--dark-active-color);
+        color: #e99898;
+      }
     }
   }
 }

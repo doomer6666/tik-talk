@@ -1,7 +1,7 @@
 import { ProfileCard } from '@/app/common-ui/profile-card/profile-card';
 import { ProfileSearch } from '@/app/common-ui/profile-search/profile-search';
-import { IProfile } from '@/app/data/services/interfaces/profile.interface';
-import { Profile } from '@/app/data/services/profile';
+import { IProfile } from '@/app/data/services/profile/profile.interface';
+import { Profile } from '@/app/data/services/profile/profile';
 import { Component, inject, OnInit, signal } from '@angular/core';
 
 @Component({
