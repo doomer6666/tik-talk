@@ -16,9 +16,9 @@ export const authTokenInterceptor: HttpInterceptorFn = (
   const platformId = inject(PLATFORM_ID);
   const authService = inject(Auth);
   if (isPlatformBrowser(platformId)) {
-    var token = localStorage.getItem('token');
+    const token = authService.token;
     if (token) {
-      req = req.clone({ setHeaders: { Authorization: `Bearer ${token}` } });
+      req = addToken(req, token);
     }
   }
   return next(req).pipe(
@@ -26,13 +26,9 @@ export const authTokenInterceptor: HttpInterceptorFn = (
       if (error.status === 403) {
         return authService.refresh().pipe(
           switchMap((data) => {
-            localStorage.setItem('token', data.access_token);
-            localStorage.setItem('refreshToken', data.refresh_token);
+            authService.saveTokens(data.access_token, data.refresh_token);
 
-            const cloneReq = req.clone({
-              setHeaders: { Authorization: `Bearer ${data.access_token}` },
-            });
-            return next(cloneReq);
+            return next(addToken(req, data.access_token));
           }),
 
           catchError((refreshError) => {
@@ -45,3 +41,8 @@ export const authTokenInterceptor: HttpInterceptorFn = (
     }),
   );
 };
+
+const addToken = (req: HttpRequest<any>, token: string): HttpRequest<any> =>
+  req.clone({
+    setHeaders: { Authorization: `Bearer ${token}` },
+  });

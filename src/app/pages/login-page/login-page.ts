@@ -27,9 +27,7 @@ export class LoginPage {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (data) => {
-          console.log(data);
-          localStorage.setItem('token', data.access_token);
-          localStorage.setItem('refreshToken', data.refresh_token);
+          this.authService.saveTokens(data.access_token, data.refresh_token);
           this.router.navigate(['/search']);
         },
         error: () => (this.isInvalidRequest = true),

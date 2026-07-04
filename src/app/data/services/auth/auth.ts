@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class Auth {
+  private readonly TOKEN_KEY = 'token';
+  private readonly REFRESH_KEY = 'refreshToken';
+
   private http = inject(HttpClient);
   private router = inject(Router);
 
@@ -20,11 +23,16 @@ export class Auth {
     return this.http.post<IAuth>(`${BASE_API_URL}/auth/token`, fd);
   }
 
+  get token(): string | null {
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  get refreshToken(): string | null {
+    return localStorage.getItem(this.REFRESH_KEY);
+  }
+
   isAuth(): boolean {
-    if (localStorage.getItem('token')) {
-      return true;
-    }
-    return false;
+    return !!this.token;
   }
 
   refresh(): Observable<IAuth> {
@@ -34,8 +42,17 @@ export class Auth {
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
+    this.clearTokens();
     this.router.navigate(['/login']);
+  }
+
+  saveTokens(accessToken: string, refreshToken: string): void {
+    localStorage.setItem(this.TOKEN_KEY, accessToken);
+    localStorage.setItem(this.REFRESH_KEY, refreshToken);
+  }
+
+  clearTokens(): void {
+    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.REFRESH_KEY);
   }
 }
