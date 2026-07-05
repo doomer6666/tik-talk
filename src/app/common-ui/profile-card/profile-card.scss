@@ -1,3 +1,5 @@
+@use "../../_mixins.scss" as mixins;
+
 .profile-card {
   border: 1px solid var(--light-color);
   background-color: var(--dark-color);
@@ -53,10 +55,7 @@
     width: 300px;
 
     .profile-card__tag {
-      padding: 4px 8px;
-      border: 1px solid var(--light-color);
-      border-radius: 2px;
-      font-weight: 700;
+      @include mixins.skill-item;
     }
 
     .profile-card__tag--match {

@@ -1,0 +1,43 @@
+@mixin skill-item {
+  padding: 4px 8px;
+  border: 1px solid var(--light-color);
+  border-radius: 2px;
+  font-weight: 700;
+
+  &-active {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+}
+
+@mixin message-input-group {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--secondary-light-color);
+  align-items: center;
+
+  &__input {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  &__submit-btn,
+  &__smile-btn {
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__smile-btn {
+    padding: 11px;
+  }
+
+  &__submit-btn {
+    padding: 14px;
+    padding-bottom: 9px;
+    background-color: var(--primary-color);
+  }
+}

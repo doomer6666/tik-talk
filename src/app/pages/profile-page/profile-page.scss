@@ -1,0 +1,220 @@
+@use "../../_mixins.scss" as mixins;
+
+.profile-page {
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+  .profile-header {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    img {
+      width: 140px;
+      height: 140px;
+    }
+
+    .profile-header__name {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .header__username {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .profile-header__setting-btn {
+      margin-left: auto;
+      margin-right: 10%;
+      padding: 10px 20px;
+      border-radius: 2px;
+      background-color: var(--primary-color);
+      color: var(--dark-color);
+      display: flex;
+      gap: 8px;
+
+      &:hover {
+        color: var(--dark-active-color);
+      }
+    }
+  }
+
+  .profile-page__content {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+
+    .profile-page__main {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 65%;
+      &::after {
+        content: "";
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+        pointer-events: none;
+      }
+
+      .profile-page__post-creator,
+      .post-feed__item {
+        background-color: var(--dark-color);
+        border: var(--light-color);
+        border-radius: 2px;
+        padding: 16px;
+      }
+
+      .post-creator {
+        @include mixins.message-input-group;
+      }
+
+      .profile-page__feed {
+        .post {
+          display: flex;
+          gap: 16px;
+
+          .post__content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            .post__header {
+              display: flex;
+              justify-content: space-between;
+              align-items: start;
+              .post__header-text {
+                display: flex;
+                gap: 8px;
+                flex-grow: 1;
+                min-width: 0;
+
+                .post__name {
+                  font-size: 14px;
+                  font-weight: 700;
+                }
+
+                .post__time {
+                  font-weight: 500;
+                  color: var(--secondary-light-color);
+                }
+              }
+
+              .post__option-btn {
+                padding: 10px;
+              }
+            }
+
+            .post__text {
+              margin-top: -15px;
+            }
+            .post__actions {
+              display: flex;
+              align-items: center;
+              gap: 20px;
+              .post__action-btn {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                img {
+                  width: 16px;
+                  height: 16px;
+                }
+              }
+            }
+            .post-comments__list {
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+              padding: 8px 28px 8px 0;
+              .post-list__item {
+                display: flex;
+                gap: 16px;
+                flex-grow: 1;
+                min-width: 0;
+                .comment {
+                  width: 100%;
+                }
+                .comment__header {
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 8px;
+                  color: var(--secondary-light-color);
+                }
+              }
+            }
+
+            .comment-input {
+              @include mixins.message-input-group;
+              padding: 16px;
+              border: 1px dashed var(--light-color);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .profile-page__sidebar {
+    width: 25%;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .followers,
+    .skills,
+    .about {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .followers {
+      .followers__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span {
+          font-weight: 700;
+          padding: 1px 5px;
+          background-color: var(--primary-green-color);
+          color: var(--dark-color);
+        }
+      }
+
+      .followers__images {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+
+    .skills {
+      .skills__list {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .skills__name {
+        @include mixins.skill-item;
+      }
+    }
+  }
+}

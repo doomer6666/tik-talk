@@ -5,6 +5,7 @@
   --secondary-light-color: #ffffffbf;
   --shadow-color: #ffffff40;
   --primary-color: #ae7aff;
+  --primary-green-color: #98e9ab;
 }
 
 html,
@@ -14,6 +15,7 @@ app-root {
   color: var(--light-color);
   font-family: "JetBrains Mono", monospace !important;
   font-size: 12px;
+  font-weight: 500;
   margin: 0;
   padding: 0;
 }
