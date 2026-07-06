@@ -76,6 +76,9 @@
       }
 
       .profile-page__feed {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         .post {
           display: flex;
           gap: 16px;
@@ -133,6 +136,8 @@
               flex-direction: column;
               gap: 8px;
               padding: 8px 28px 8px 0;
+              max-height: 140px;
+              overflow: auto;
               .post-list__item {
                 display: flex;
                 gap: 16px;

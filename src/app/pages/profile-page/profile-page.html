@@ -1,8 +1,9 @@
 <div class="profile-page">
+  @if(profile(); as p) {
   <header class="profile-page__header profile-header">
-    <img src="assets/avatar.png" />
-    <h1 class="profile-header__name">Райан Гослинг</h1>
-    <p class="profile-header__username">ryan.gosling</p>
+    <img [src]="p.avatarUrl? (p.avatarUrl | imgUrl) : 'assets/avatar.png'" />
+    <h1 class="profile-header__name">{{p.firstName}} {{p.lastName}}</h1>
+    <p class="profile-header__username">{{p.username}}</p>
     <button class="profile-header__setting-btn">
       Редактировать
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,68 +16,74 @@
   <div class="profile-page__content">
     <div class="profile-page__main">
       <div class="profile-page__post-creator post-creator">
-        <img src="assets/avatar.png" />
-        <input class="post-creator__input" type="text" placeholder="Напишите что-нибудь" />
+        <img [src]="p.avatarUrl? (p.avatarUrl | imgUrl) : 'assets/avatar.png'" />
+        <input #postInput class="post-creator__input" type="text" placeholder="Напишите что-нибудь" />
         <button class="post-creator__smile-btn">
           <img src="assets/smile.svg" />
         </button>
-        <button class="post-creator__submit-btn">
+        <button class="post-creator__submit-btn" (click)="createPost(postInput)">
           <img src="assets/message.svg" />
         </button>
       </div>
       <ul class="profile-page__feed post-feed">
+        @for(post of posts(); track post.id){
         <li class="post-feed__item post">
-          <img src="assets/avatar.png" />
+          <img [src]="post.author.avatarUrl? (post.author.avatarUrl | imgUrl) : 'assets/avatar.png'" />
           <div class="post__content">
             <div class="post__header">
               <div class="post__header-text">
-                <p class="post__name">Райан Гослинг</p>
-                <p class="post__time">2 часа назад</p>
+                <p class="post__name">{{post.author.firstName}} {{post.author.lastName}}</p>
+                <p class="post__time">{{post.createdAt | TimeFormat}}</p>
               </div>
               <button class="post__option-btn">⋯</button>
             </div>
-            <p class="post__text">Список навыков</p>
+            <p class="post__text">{{post.title}}</p>
 
             <div class="post__actions">
-              <button class="post__action-btn post__action-btn--comment" (click)="isCommentOpen.set(!isCommentOpen())">
+              <button class="post__action-btn post__action-btn--comment" (click)="onCommentClick(post.id)">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M10 6.65625C10 6.84375 9.92708 7 9.78125 7.125C9.65625 7.25 9.5 7.3125 9.3125 7.3125H2.65625L0 10V0.65625C0 0.46875 0.0625 0.3125 0.1875 0.1875C0.3125 0.0625 0.46875 0 0.65625 0H9.3125C9.5 0 9.65625 0.0625 9.78125 0.1875C9.92708 0.3125 10 0.46875 10 0.65625V6.65625ZM12.6562 2.65625C12.8438 2.65625 13 2.71875 13.125 2.84375C13.25 2.96875 13.3125 3.125 13.3125 3.3125V13.3125L10.6562 10.6562H3.3125C3.125 10.6562 2.96875 10.5938 2.84375 10.4688C2.71875 10.3438 2.65625 10.1875 2.65625 10V8.65625H11.3125V2.65625H12.6562Z"
-                    fill="#AE7AFF" />
+                    [attr.fill]="openPostCommentsId() === post.id? 'var(--primary-color)' : 'white'" />
                 </svg>
-                10
+                {{post.comments.length}}
               </button>
-              <button class="post__action-btn post__action-btn--like">
+              <button class="post__action-btn post__action-btn--like" (click)="onLike(post)">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M8.0625 12.375C9.0625 11.4792 9.80208 10.8021 10.2812 10.3438C10.7604 9.88542 11.2812 9.34375 11.8438 8.71875C12.4062 8.09375 12.7917 7.54167 13 7.0625C13.2292 6.58333 13.3438 6.11458 13.3438 5.65625C13.3438 4.98958 13.1146 4.4375 12.6562 4C12.2188 3.5625 11.6667 3.34375 11 3.34375C10.4792 3.34375 9.98958 3.48958 9.53125 3.78125C9.09375 4.07292 8.79167 4.44792 8.625 4.90625H7.375C7.20833 4.44792 6.89583 4.07292 6.4375 3.78125C6 3.48958 5.52083 3.34375 5 3.34375C4.33333 3.34375 3.77083 3.5625 3.3125 4C2.875 4.4375 2.65625 4.98958 2.65625 5.65625C2.65625 6.11458 2.76042 6.58333 2.96875 7.0625C3.19792 7.54167 3.59375 8.09375 4.15625 8.71875C4.71875 9.34375 5.23958 9.88542 5.71875 10.3438C6.19792 10.8021 6.9375 11.4792 7.9375 12.375L8 12.4375L8.0625 12.375ZM11 2C12.0417 2 12.9062 2.35417 13.5938 3.0625C14.3021 3.77083 14.6562 4.63542 14.6562 5.65625C14.6562 6.26042 14.5417 6.85417 14.3125 7.4375C14.0833 8 13.6562 8.63542 13.0312 9.34375C12.4271 10.0521 11.875 10.6458 11.375 11.125C10.875 11.6042 10.0729 12.3438 8.96875 13.3438L8 14.2188L7.03125 13.375C5.59375 12.0833 4.55208 11.1146 3.90625 10.4688C3.28125 9.82292 2.69792 9.0625 2.15625 8.1875C1.61458 7.3125 1.34375 6.46875 1.34375 5.65625C1.34375 4.63542 1.6875 3.77083 2.375 3.0625C3.08333 2.35417 3.95833 2 5 2C6.20833 2 7.20833 2.46875 8 3.40625C8.79167 2.46875 9.79167 2 11 2Z"
-                    fill="white" />
+                    [attr.fill]="isLikedByMe(post) ? 'var(--primary-color)' : 'white'" />
                 </svg>
-                10
+                {{post.likes}}
               </button>
             </div>
-            @if(isCommentOpen()){
+            @if(openPostCommentsId() === post.id){
             <div class="post__comments post-comments">
               <ul class="post-comments__list">
-
+                @for(comment of post.comments; track comment.id){
                 <li class="post-list__item comment-wrapper">
                   <img src="assets/avatar.png" />
                   <div class="comment">
                     <div class="comment__header">
-                      <p class="comment__header__name">Тест Тестов</p>
-                      <p class="comment__header__date">06.06.2026</p>
+                      <p class="comment__header__name">{{comment.author.firstName}} {{comment.author.lastName}}</p>
+                      <p class="comment__header__date">{{comment.createdAt | TimeFormat}}</p>
                     </div>
-                    <p class="comment__text">Тест</p>
+                    <p class="comment__text">{{comment.text}}</p>
                   </div>
                 </li>
+                }
+                @empty {
+                <div class="comment">Пусто</div>
+                }
               </ul>
               <div class="post-comments__input-group comment-input">
                 <img src="assets/avatar.png" class="comment-input__avatar" />
-                <input class="comment-input__input" type="text" placeholder="Напишите комментарий" />
+                <input #commentInput class="comment-input__input" type="text" placeholder="Напишите комментарий" />
                 <button class="comment-input__smile-btn">
                   <img src="assets/smile.svg" />
                 </button>
-                <button class="comment-input__submit-btn">
+                <button [disabled]="isCommentLoading()" class="comment-input__submit-btn"
+                  (click)="sendComment(commentInput, post.id, p.id)">
                   <img src="assets/message.svg" />
                 </button>
               </div>
@@ -84,6 +91,7 @@
             }
           </div>
         </li>
+        }
       </ul>
     </div>
 
@@ -91,12 +99,14 @@
       <div class="info__followers followers">
         <div class="followers__header">
           <h2>Подписчики</h2>
-          <span class="followers__counter">10</span>
+          <span class="followers__counter">{{p.subscribersAmount}}</span>
         </div>
         <ul class="followers__images">
+          @for (s of subscribers(); track s.id) {
           <li class="followers__image">
-            <img src="assets/avatar.png" />
+            <img [src]="s.avatarUrl |imgUrl" />
           </li>
+          }
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M10 7.3125V6H7.3125V3.3125H6V6H3.3125V7.3125H6V10H7.3125V7.3125H10ZM1.9375 1.96875C3.25 0.65625 4.82292 0 6.65625 0C8.48958 0 10.0521 0.65625 11.3438 1.96875C12.6562 3.26042 13.3125 4.82292 13.3125 6.65625C13.3125 8.48958 12.6562 10.0625 11.3438 11.375C10.0521 12.6667 8.48958 13.3125 6.65625 13.3125C4.82292 13.3125 3.25 12.6667 1.9375 11.375C0.645833 10.0625 0 8.48958 0 6.65625C0 4.82292 0.645833 3.26042 1.9375 1.96875Z"
@@ -108,16 +118,22 @@
       <div class="profile-page__skills skills">
         <h2 class="skills__header">Навыки</h2>
         <ul class="skills__list">
+          @for(skill of p.stack; track skill){
           <li class="skills__item">
-            <span class="skills__name">JS</span>
+            <span class="skills__name">{{skill}}</span>
           </li>
+          }
         </ul>
       </div>
 
       <div class="profile-page__about about">
         <h2 class="about__header">О себе</h2>
-        <p class="about__text">Text</p>
+        <p class="about__text">{{p.description}}</p>
       </div>
     </div>
   </div>
+  }
+  @else {
+  <p>Loading...</p>
+  }
 </div>
